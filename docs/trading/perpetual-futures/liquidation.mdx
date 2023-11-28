@@ -1,0 +1,24 @@
+---
+sidebar_label: '🌊 Liquidation'
+---
+
+# Liquidation
+
+A position can be liquidated if the collateral falls below the maintenance requirement.
+
+When is a position is up for liquidation, it first goes into a pending state, until the next oracle update. 
+During this period, no new positions can be opened or closed. 
+If the position still violates the maintenance margin requirements at the time of the oracle update, liquidation proceeds. 
+
+Upon successful liquidation, a liquidation fee is applied. 
+This fee is a percentage of the maintenance requirement at the time of liquidation, subject to maximum and minimum limits.
+The liquidator (the party who executes the liquidation) is rewarded with this fee. 
+This incentivizes timely and efficient liquidation of under-collateralized positions.
+
+When a position is liquidated, any collateral remaining after deducting losses and fees would be returned to your account.
+
+Ex: 
+A long position is opened on an asset, with a notional value of 5000 USD and the current price of the asset is 1000 USD. 
+The maintenance margin is set at 20% meaning 1000 USDC (20% of 5000 USD).
+For this position, if the value of collateral falls below 1000 USD, then the position is at risk of a liquidation.  
+

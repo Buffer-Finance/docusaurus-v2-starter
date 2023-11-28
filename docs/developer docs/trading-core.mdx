@@ -1,0 +1,94 @@
+---
+sidebar_label: '🏗 Trading Core'
+---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Trading Core
+
+The Buffer AMM on Arbitrum One, is comprised of a number of smart contracts that operate cohesively to match traders (takers) with LPs (makers). The platform also offers traders with the ability to effectively hedge their positions, and LPs a robustly delta hedged platform to provide liquidity for both collateral and premiums for the positions traded. 
+
+## Protocol Contracts:
+
+### BufferBinaryPool
+Allows users to deposit quote asset (tokenX) to receive Buffer Pool Liquidity Tokens (BLP), which represents a share of the LP. These funds are used as collateral for the options in the BufferBinaryOptions/ 
+
+When a user provides liquidity to the pool by depositing ```tokenX```, the amount of liquidity that will be added and stored along with a timestamp of the time liquidity enters the pool. Once processed, the user then receives BLP tokens in return. 
+
+The amount of BLP tokens minted for the user depends on the current ratio of the total tokenX in the pool to the total supply of BLP tokens.
+
+The ```provide``` function calculates the amount of BLP to mint based on the amount of ```tokenX``` a user deposits. 
+If the pool is not empty, the amount of BLP minted is proportional to the increase in pool size due to the added tokenX. 
+
+The formula used is:
+
+$$
+mint = (tokenXAmount * supply) / balance
+$$
+
+The BufferBinaryOptions contract sends the premium charged while buying an option to the pool.
+For ITM options at the time of expiry, the locked liquidity is sent as a reward thus resulting in a loss for the pool
+For ATM/OTM options at the time of expiry, the locked liquidity is released and nothing is sent to the user. 
+The pool thus makes a profit from the premium collected at the time of option buying
+
+:::info
+Locked liquidity > Premium
+:::
+
+The admin and other liquidity providers add this liquidity that’s locked in the pool to reward the users for ITM options and make a profit from the OTM and ATM options. 
+
+This profit is distributed amongst the LP in the ratio of the liquidity added.  
+
+:::note
+The pool also has a lockup period of 1 day to prevent LPs from immediate withdrawal after an OTM option.
+:::
+
+#### ```lockedAmount``` & ```lockedPremium```
+
+On Buffer, "Locking" means that the funds in the pool will not be used to underwrite new options. 
+
+When the user pays 100 USDC for the trade, assuming the current dyanmic settlement fee is 20%, the remaining 80 USDC goes to the pool as ```lockedPremium``` (this amount is locked until the option expires).
+
+Then another 160 USDC from the pool's balance is locked as the ```lockedAmount``` until the option expires.
+
+The above ```lockedPremium``` is given to the pool as a reward for taking the risk over the ```lockedAmount```.
+
+Here 2 scenarios can occur:
+- if the option ends in-the-money, the entire ```lockedAmount``` is paid to the option's owner, and the ```lockedPremium``` is unlocked so the pool's net loss in this case is 
+
+$$
+lockedAmount - lockedPremium
+$$
+
+- if the option ends on-the-moeny, nothing is paid to the option's owner and the pool unlocks both ```lockedAmount``` and ```lockedPremium``` and the pool's net profit is the ```lockedPremium``` on this trade.
+
+### BufferBinaryOptions
+
+This is an ERC-721 contract where each option is an NFT. The contract is called by ```createFromRouter``` to open and close options on Buffer. 
+Whenever the router opens a trade, this contract mints an NFT tokens and locks a specified amount of ```tokenX``` for the user and burns it at the time of closing. 
+
+The fee collected by the router is distributed amongst the ```BufferBinaryPool``` and ```SettlementFeeDisbursal```.
+
+## Router
+
+A single router is shared by all options contracts. Each asset pair has its own options contract linked to a liquidity pool.
+The pair is independent of the pool's deposit token. This is the primary contract that the users and keepers interact with. 
+
+## Publisher
+A trusted admin account that signs the maret price. All prices are stored off-chain and signed by the publisher. 
+
+## Keepers
+Keepers are special admin accounts that trigger all the transactions on behalf of the users. 
+
+Buffer v2.5 comprises of 4 keepers:
+- Open keeper
+- Close keeper
+- Early close keeper
+- Revoke Keeper
+
+In every iteration, the keeper calls a ```datasource``` to fetch the signed pending transactions that the user intends to broadcast on-chain.
+The publisher signs market prices required to open/close for a given market at a given time. 
+The keeper collects all the information and writes these pending transactions on-chain. 
+
+

@@ -1,0 +1,126 @@
+---
+sidebar_label: '🔧 Technicalities'
+---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Technicalities
+
+## Signature Validation
+The publisher fetches the prices every second for the required asset pairs from some off-chain oracle and stores it in the DB along with a signature. 
+The keeper picks up tis data to then open/close the trades. The contract validates this data by generating a signature and checking if the signer is the publisher. 
+
+## Settlement Fee (Sf)
+The contract defines the ```baseSettlementFeePercentageForAbove``` and ```baseSettlementFeePercentageForBelow```.
+Settlement Fee can be discounted by subtracting $(max step reduction * step size)$ from the base sf.
+This base max step reduction is defined in the ```BufferBinaryOptions``` contracts based on referral mechanics. 
+
+- settlementFeePercentage = $baseSF = (userReferralTierStep * settlementFeeStepSize) - boostPercentage$
+- Settlement fee = $settlementFeePercentage * trade size$
+- For settlement fee of x%, the payout will be $100-2*x$
+- The lower the settlement fee, the higher is the payout the user receives
+
+:::info
+settlement fee is dynamic on Buffer, influenced by trading volume and payout. 
+:::
+
+Dynamic sf formula:
+
+```js
+def calculate sf (
+    total_payin: float,
+    total_payout: float,
+    max_payout_for_market: float,
+    C_for_market: float,
+    initial_payout_for_market: float, 
+) -> int:
+    payout_percent = (
+        (C_for_market * (max_payout_for_market - initial_payout_for_market))
+        + ((total_payout - total_payin) * 100)
+    ) / (C_for_market + total_payin)
+    payout = min(max_payout_for_market, max_payout_for_market - payout_percent)
+    payout = int(payout) - (int(payout) % 5)
+    return to_sf(payout)
+```
+## Referral Discounts
+
+Referrals allow users to get fee discounts and earn rebates. The referral program has tier-based system to ensure referrers receive the rebates for the users they onboard to Buffer Finance. 
+Anyone can create a tier 1 code while the admin has ability to upgrade the user's code to tier 2 or tier 3. 
+
+**Mechanics:**
+- Referral Code Usage:
+referees can utilize a referrer's referral code while performing trades on Buffer. This referral code is provided by the referrer and serves as a unique identifier. 
+
+- Referee Benefits:
+Upon using a valid referral code, referees receive a discount on their trade amount. This incentive motivates referees to engage in trades and encourages then to join the platform through the referrer's invitation. 
+
+- Referrer Benefits:
+Referrers are rewarded with a rebate for each successful referral. This encourages existing users to invite new users to the platform, thereby expanding the user base.
+
+- The ```openTrade()``` function, responsible for trade execution accepts a referral code as an argument. By passing the referral code to this function, referees become eligible for the associated discounts and referrers qualify for rebates. 
+
+- Settlement fee discount and increased payout:
+When a valid referral code is provided as an argument, to the ```openTrades()``` function, referees are granted a discount on he settlement fee for their trades which results in increased payout. 
+
+
+## Spread: 
+
+The opening price for an option now slightly exceeds the current price for "up" options and slightly undershoots it for "below" options. This is the formula:
+
+Spread = 
+
+$$
+f(hv, oi)
+$$
+
+The spread linearly scales from the lowest value which is 0.4 basis points at 2.5% hv to 0.8 basis points(spread config 2) at 16% hv.
+Then this lowest value of spread increases linearly to 1.5 (spread factor) times the lowest value as utilization of that market increases. 
+
+Spread Formula =
+
+```solidity
+function getSpread( 
+    uint256 strike, 
+    bool isAbove,
+    IOptionsConfig config,
+    IBufferBinaryOptions optionsContract
+) public view returns (uint256) {
+    uint256 spreadConfig1 = config.spreadConfig1();
+    uint256 spreadConfig2 = config.spreadConfig2();
+    uint256 m = (spreadConfig2 - spreadConfig1) / 1350;
+    uint256 c = (22 * spreadConfig1 - 5 * spreadConfig2) / 27;
+    uint256 spread = (m * config.iv()) + c;
+
+    // Adjust spread based on market utilization
+    spread = ((spread * (config.spreadFactor()) * optionsContract.totalMarketOI()) / 
+             (1e3 * optionsContract.getMaxOI())) + spread;
+    return spread;
+}
+
+function getSafeStrike( 
+    uint256 strike, 
+    bool isAbove,
+    IOptionsConfig config,
+    IBufferBinaryOptions optionsContract
+) public view returns (uint256) {
+    uint256 spread = getSpread(strike, isAbove, config, optionsContract);
+    // Adjust strike based on spread
+    return isAbove ? (strike * (1e8 + spread)) / 1e8 : (strike * (1e8 - spread)) / 1e8;
+}
+```
+
+## Advanced Settings:
+
+On the Frontend, the users can find an option to configure the slippage and partial fill. 
+
+### Partial Fill:
+This opens a trade of the maximum possible value and refunds the rest of the fees back to the users. If the user tries to open a trade for more than what the pool allows, then contract will check if the ```allowPartialFill``` tag is true. 
+
+### Slippage:
+On Buffer Finance, slippage is used as the accepted price movement between when the user initiates the trade and when the trade is actually opened. 
+The frontned is fetching the price feed from the price APIs (which take a median over multiple exchanges).
+
+When the user opens the trade on the frontend (launching an ```initiateTrade``` transaction), the price form the API is used. Then the keeper open the trade, it is here the price is provided for ```blockNumber`` where the ```intiateTrade``` transaction was accepted.
+
+We check the slippage to check if there is a difference between the price provided on the frontend and the price used by the keeper.

@@ -1,0 +1,48 @@
+---
+sidebar_label: '👆 One-Click Trading Flow'
+---
+
+# One-Click Trading Flow
+
+## Definitions:
+- Trading account: user EOA (Externally Owned Account) connected to the dApp
+- one_CT: an auxiliary account generated when a user signs a hashed message from the main Trading account. The account serves the purpose of generating signatures for trade-related operations within the dApp. The account also does not hold any funds.  
+
+## Registration:
+The user-generated one_ct account by signing a hashed message from the trading account. Once the one_ct is activated, the frontend gains the permission to sign messages on behalf of the user without requiring Web3 Wallet approvals. This simplifies the user experience significantly by reducing the number of button clicks required to execute a trade on Buffer. 
+
+In addition to one_ct account creation, users generate a separate signature as verification of their registration initiation. These signatures are stored off-chain. 
+
+When a user attempts to open a trade on Buffer, the on-chain registration process is triggered. At this stage, the dApp retrieves the off-chain stored signature associated with the user and mints a new option for the user. 
+
+## Approval: 
+Users have the option to choose either partial or full approval for trading on Buffer: partial and full approval. Partial approval permits users to grant consent for certain operations while withholding approval for others. On the other hand, full approval grants unrestricted permission for all designated actions.
+
+In order to approve the user has to sign ERC-2612 structured typed data. The resulting signature is stored off-chain.
+
+The approval process is initiated when a user seeks to open trades within the system. At this point, the off-chain stored signatures are retrieved and verified against the provided data. If the signatures are valid, the relevant actions associated with the approval are executed.
+
+## De-registration:
+At the end of a trading session, users can deactivate their one_ct accounts. During this process, the user generates a signature of their intention to de-register. This signature acts as proof that the de-registration has been authorized by the user. 
+
+Once the user initiates the de-registration, the admin is responsible for triggering the necessary transactions on behalf of the user. 
+
+## Re-registration:
+After successful de-registration, the user can re-register and regain access to their one_ct account. The re-registration process mirrors the registration process. 
+
+## Trade Opening:
+- Function: ```openTrades()```
+
+- Execution: This function can be invoked by authorized "keepers" only. The function opens traders that are at maximum 1 minute old. If the user has not already given approval, they must provide approval to the "router." The system then checks for ```shouldApprove``` - if it's true, the approval process is implemented using the ERC-2612 standard. 
+The user has requested to register one_ct account (performing their first trade on Buffer), the registration request is processed at this step. All relevant signatures are verified using the ERC-712 standard to ensure authenticity and integrity. 
+ When the trade is initiated, the user is charged a ```total_fee``` which includes the user-specified fee and an additional ```platform_fee``` in USDC. The fee amount is revised based on the configurations set by the admin. If revised, the new fee amount is sent from the user's Trading Account to the target market contract. 
+Subsequently, a new option is minted and sent to the user.
+
+## Trade Closing:
+- Function: ```executeOptions()```
+
+- Execution: This function can be invoked by authorized "keepers" only. Trades that have reached their maturity date are targeted for closure. The market direction and publisher signatures are verified using the ERC-712 standard to ensure authenticity and integrity. 
+     - For ITM (in-the-money) options, the entire locked amount is sent to the user who initially held the option. This ensures that the user receives the locked amount upon successful closure of the profitable trade. 
+
+     - For ATM (at-the-money) or OTM (on-the-money) options, the locked amount is released and subsequently distributed among liquidity providers. This equitable distribution rewards liquidity providers and fosters a fair and balanced trading environment. 
+Upon completion of this function, the option is burnt, ensuring it can no longer be traded or accessed within the platform. 

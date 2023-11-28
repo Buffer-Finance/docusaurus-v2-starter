@@ -1,0 +1,26 @@
+---
+sidebar_label: '🔼 Leverage & Margin'
+---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Leverage & Margin
+
+In the current version, leverage is calculated based on Maintenance Margin, which a safety parameter ensuring that there is always enough collateral in the account to cover potential losses. 
+
+Maintenance Margin is defined as the minimum ratio of collateral to notional size that a specific market allows. 
+It dictates. how much notional size leverage a trader (taker) can get. 
+
+Formula: 
+
+$$
+\text{Maximum leverage} = \frac{1}{\text{maintenance\%}}
+$$
+
+Maintenance requirement is based on the notional of a trader's position times the margin percentage requirement. 
+
+:::info
+If the collateral amount entered by the trader falls below this margin requirement, the trader's position will be liquidated.
+:::
+

@@ -1,0 +1,31 @@
+---
+sidebar_label: '⚖ Funding Curve'
+---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Funding Curve
+
+There may be a positive or negative funding fee applied to a position when it is open. 
+The fee is dynamically adjusted based on the market skew, incentivizing participants to either enter new positions or adjust their existing ones to reduce the imbalance. 
+This mechanism ensures that the market remains efficient and that makers are fairly compensated for balancing the market. 
+
+At each market update, Perennial recalculates the funding rate based on the current market skew and a risk parameter (denoted as 'k'). 
+
+$$
+\text{skew} = \frac{\text{long} - \text{short}}{\max(\text{long}, \text{short})}
+$$
+
+This rate of change continues to adjust linearly between market updates.
+
+$$
+\text{rate of change in funding} = \frac{\text{skew}}{k}
+$$
+
+If there's a noticeable skew, the funding rate is adjusted at each oracle update. 
+The greater the skew, the larger the adjustment in the funding rate per update.
+
+:::info
+The funding fee can be viewed on the interface by hovering over your position's P&L.
+:::

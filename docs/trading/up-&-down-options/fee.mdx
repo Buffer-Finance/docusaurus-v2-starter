@@ -1,0 +1,28 @@
+---
+sidebar_label: '📖 Fee'
+---
+
+# Fee
+
+## Settlement Fee:
+
+Settlement Fee (or trading fee) is the fee paid by takers (traders) to the makers (LPs). 
+Buffer employs a "Dynamic Pricing" mechanism to incentivize or penalize takers, with the aim of maintaining balance in the Open Interest (OI)
+across various markets and promoting diversification among takers. 
+Dynamic pricing is designed to impose higher fees during periods of market volatility. 
+
+Fee is collected at the time when takers open a position and dynamically scales, influenced by trading volume, and payouts.
+With this mechanism in place payouts can range between a maximum dynamic of 90% to a minimum dynamic of 75% or lower.
+
+
+## Keeper Fee:
+
+Placing Up/Down trades on Buffer incurs a flat fee for interactions with the Buffer keeper to compensate for the gas paid to the underlying blockchain while allowing for a 2x faster 1 Click trading experience. 
+This is a fixed amount used to cover the keeper fee for opening & closing a trade. 
+
+## Fee Distribution:
+
+All collected fees is distributed between the makers (aBLP & uBLP LPs), $BFR Stakers, Buffer Treasury, Referral (affiliates), and competitions. 
+
+This fee goes to the Settlement Fee Disbursal (SFD) Contract. SFD contract transfers this fee to the reward distributor contracts of staking.
+The protocol uses the chainlink keeper to distribute the fee accumulated in the SFD contract to the respective distributors every Wednesday at 12:00 UTC

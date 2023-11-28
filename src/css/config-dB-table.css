@@ -1,0 +1,49 @@
+.config-dB-table {
+    display: flex;
+    justify-content: center; /* Centers the table wrapper horizontally */
+  }
+  
+  .config-dB-table table {
+    width: 100%; /* Adjust the width as needed */
+    border-collapse: collapse;
+    margin: 0 auto; /* Centers the table within the wrapper */
+  }
+  
+  .config-dB-table th, .config-dB-table td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .config-dB-table td:first-child {
+    width: 40%; /* Adjust the width of the first column as needed */
+  }
+  
+  /* Header row styling */
+  .config-dB-table th {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text by default */
+  }
+  
+  /* All rows have no background color */
+  .config-dB-table tr {
+    background-color: transparent;
+  }
+  
+  /* Hover effect for rows */
+  .config-dB-table tr:hover {
+    background-color: #e8f4fd; /* Light blue for hover in light mode */
+    color: #333; /* Darker text color for better visibility */
+  }
+  
+  /* Adjust text color for dark mode */
+  @media (prefers-color-scheme: dark) {
+    .config-dB-table th {
+      color: black; /* Black text in dark mode */
+    }
+  
+    .config-dB-table tr:hover {
+      background-color: #2a2a2a; /* Darker background for hover in dark mode */
+      color: white; /* White text color for better visibility */
+    }
+  }
+  
