@@ -1,0 +1,20 @@
+---
+sidebar_label: '💴 Collateral'
+---
+
+# Collateral
+
+For users trading perpetual contracts on Buffer, the platform uses USDC as collateral. 
+
+Buffer has integrated Perennial v2's sophisticated collateral mechanism using the Digital Standard Unit (DSU), an advanced stablecoin standard.
+DSU is essentially an enhanced version of USDC, often referred to as "USDC+", as it maintains all the fundamental properties of USDC while adding significant benefits, particularly in terms of censorship resistance. 
+This feature is crucial for protecting the interests of DSU users and the protocols that utilize it.
+
+DSU is a fully-backed, trust-minimized & community-owned stablecoin for web3. The stablecoin holds all the properties of USDC, except it has the added 
+benefits of censorship resistance, designed to protect DSU users and protocols that build on top of it. 
+
+All markets are quoted in USD, and the profit and loss (P&L) are settled in USDC. 
+Behind the scenes, the Frontend automatically wraps this USDC into DSU and manages it within the protocol. 
+This process is seamless from the user's perspective, as most do not need to interact directly with DSU. 
+
+Similarly, when a user withdraws, their collateral, the frontend unwraps the DSU and returns USDC to user's wallet.

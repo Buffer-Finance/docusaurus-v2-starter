@@ -1,0 +1,64 @@
+---
+sidebar_label: 💡 What are Perpetual Futures?
+---
+import '/src/css/cards.css';
+
+
+# What are Perpetual Futures?
+
+Perpetual futures are a type of derivative instruments that allow traders to speculate on the price movement of the underlying asset without taking delivery of the said asset.
+Unlike traditional futures contracts, perps never expire and can be held indefinitely. 
+
+The contract's price is tethered to the underlying asset's spot price with funding rates, that modulate the incentive to trade long/short position by allocating a positive or negative carry cost to a position. 
+
+Perennial Finance powers perps on Buffer, allowing traders to go long/short on any supported asset with up 100x leverage. 
+
+## Why trade Perpetual Futures?
+
+### To hedge against the asset exposure or to insure against uncertain price movement
+
+Ex, For instance, imagine you purchased an asset at 55 USD, and its current market price is 80 USD. 
+You believe the asset's fair value is 120 USD, so you're not ready to sell yet. 
+However, you're concerned about a potential short-term decline in its price.
+In this scenario, opening a short position on the asset at 80 USD can be an effective strategy. 
+This approach allows you to lock in profits at 80 USD while still holding the asset. 
+
+If the price does drop to 60 USD, your short position compensates for the decrease in your asset's value, effectively securing profits from the higher price point. 
+This strategy positions you comfortably while you wait for the asset to reach your target price of 120 USD.
+
+### To speculate on a specific asset/market, including with leverage
+
+Ex, For instance, you will the current price of an asset at 100 USD is overvalued. 
+In this scenario, you would take a short position to bet against the price of the said asset. 
+Meaning, you will generate a profit if the the price of the asset goes down, and incur a loss if it goes up.
+Say, the price of the said asset decreased to 80 USD, and you shorted it at 100 USD, then you will generate a profit. 
+
+In another case, if you beleive the current of an asset at 100 USD is undervalued. In this scenario, you take a long position on the price of the asset. 
+Meaning you will generate a profit if the price of the asset goes up, and a loss if the price of the asset goes down. 
+
+### For liquid access to market/assets that would otherwise be difficult to trade 
+
+Ex, Imagine the current market price of an asset is 100 USD , and you believe it is undervalued. 
+You have 1,000 USD in collateral but feel this amount doesn't provide the level of market exposure you desire. 
+In this scenario, you can opt to take a leveraged long position on the asset. 
+By applying 10x leverage to your 1,000 USD collateral, you effectively increase your exposure to 10,000 USD. This leverage amplifies the impact of price movements on your position. 
+
+For instance, if the asset's price rises by 1%, your position would see a 10% profit, magnifying the return on your initial collateral. 
+Conversely, a 1% drop in the asset's price would result in a 10% loss. It's important to note that with high leverage comes increased risk, including the potential for liquidation. If the asset's price decreases significantly, your position could be liquidated, resulting in the loss of your collateral.
+
+## How do Perps work on Buffer?
+
+Buffer perps are built on top of Perennial, a peer-to-pool derivatives AMM that offers to take the other side of any taker’s position directly at the oracle price, in exchange for a funding rate that is calculated based on the utilization of the liquidity pool.
+
+## Quick Links
+
+<div className="card-container">
+  <!-- Card 1 -->
+  <div className="card">
+    <img src="/img/general/perps.png" alt="perps"/>
+    <div className="card-content">
+      <h2 className="card-title">Perps</h2>
+      <a href="https://perps.buffer.finance/trade" className="card-button" target="_blank" rel="noopener noreferrer">Trade Now</a>
+    </div>
+  </div>
+  </div>

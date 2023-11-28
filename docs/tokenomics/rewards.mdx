@@ -1,0 +1,86 @@
+---
+sidebar_label: '💰 Rewards'
+---
+import '/src/css/pair-table.css';
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Rewards
+
+BFR holders can unlock multiple rewards by staking their tokens. 
+
+## Escrowed BFR (esBFR)
+Escrowed BFR (esBFR) can be used in two ways:
+- Staked for rewards similar to regular BFR tokens
+- Vested to become actual BFR tokens over a period of one year
+Each staked Escrowed BFR token will earn the same amount of Escrowed BFR rewards as a regular BFR token.
+
+## esBFR Vesting
+Escrowed BFR (esBFR) tokens can be converted into BFR tokens through vesting, this can be accessed on the Earn page.
+When vesting is initiated, the average amount of BFR or BLP tokens that were used to earn the esBFR rewards will be reserved.
+
+For example, if you staked 1000 BFR and earned 100 esBFR tokens, then to vest 100 esBFR tokens, 1000 BFR tokens will be reserved. To vest 50 esBFR, 500 BFR tokens will be reserved. Note that this is an example and the actual ratio depends on the average staked amount and rewards earned for your account.
+esBFR tokens that have been unstaked and deposited for vesting will not earn rewards. Staked tokens that are reserved for vesting will continue to earn rewards.
+After initiating vesting, the esBFR tokens will be converted into BFR every second and will fully vest over 365 days. esBFR tokens that have been converted into BFR are claimable at any time.
+
+If a user sells BFR or BLP tokens and would like to vest their esBFR rewards later on, they would need to re-buy the BFR or BLP tokens.
+
+BFR, esBFR and Multiplier Points can be used interchangeably for the required reserve amount.
+
+Depositing into the vesting vault while existing vesting is ongoing is supported.
+Tokens that are reserved for vesting cannot be unstaked or sold. 
+
+To unreserve the tokens, use the "Withdraw" button on the Earn page. Partial withdrawals are not supported, so withdrawing will withdraw and unreserve all tokens as well as pause vesting. 
+Upon withdrawal, esBFR tokens that had been vested into BFR will remain as BFR tokens.
+
+## Multiplier Points​ (MPs)
+Multiplier Points reward long-term holders without inflation.
+
+When you stake BFR, you receive Multiplier Points every second at a fixed rate of 100% APR. 1000 BFR staked for one year would earn 1000 Multiplier Points.
+
+Multiplier points can be staked for fee reward. When BFR or Escrowed BFR tokens are unstaked, the proportional amount of Multiplier Points is burnt. 
+
+Eg: if 1000 BFR is staked and 500 Multiplier Points have been earned so far, then un-staking BFR would burn 150 (300 / 1000 * 500) Multiplier Points. The burn will apply to the total amount of Multiplier Points which includes both staked and unstaked Multiplier Points.
+
+To transfer staked tokens without burning Multiplier Points, use the "Transfer" button on the Earn page.
+
+The "Boost Percentage" shown on the Earn page shows your individual boost amount from Multiplier Points.
+The “Boost Percentage” is calculated based on the ratio of Multiplier Points to your total amount of staked BFR:
+
+$$
+\text{Boost Percentage} = 100 \times \frac{\text{Staked Multiplier Points}}{\text{Staked BFR} + \text{Staked esBFR}}.
+$$
+
+## Reward Management:
+
+- Stake Multiplier Points (MPs): This will claim & stake your Multiplier Point rewards.
+- Claim BFR Rewards: This will claim any pending BFR tokens from esBFR that have been vested and converted to BFR tokens.
+- Stake BFR Rewards: This will stake the BFR after it has been claimed.
+- Claim esBFR Rewards: This will claim any pending esBFR rewards.
+- Stake esBFR Rewards: This will stake the esBFR after it has been claimed.
+
+These options can be accessed through either the "Compound" or "Claim" buttons on the Earn page.
+
+## Quick Links
+
+<div className="card-container">
+ <!-- Card 1 -->
+  <div className="card">
+    <img src="/img/general/earn.png" alt="buffer earn page"/>
+    <div className="card-content">
+      <h2 className="card-title">$BFR Staking</h2>
+      <a href="https://earn.buffer.finance/" className="card-button" target="_blank" rel="noopener noreferrer">Stake Now</a>
+    </div>
+    </div>
+
+     <!-- Card 1 -->
+  <div className="card">
+    <img src="/img/general/stake.jpg" alt="buffer earn page"/>
+    <div className="card-content">
+      <h2 className="card-title">How to Stake?</h2>
+      <a href="https://www.youtube.com/watch?v=BJ67seo_RSo" className="card-button" target="_blank" rel="noopener noreferrer">Learn Now</a>
+    </div>
+  </div>
+</div>

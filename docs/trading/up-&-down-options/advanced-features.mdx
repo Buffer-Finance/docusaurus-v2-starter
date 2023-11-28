@@ -1,0 +1,39 @@
+---
+sidebar_label: '🔩 Advanced Features'
+---
+
+# Advanced Features
+
+## Early Close 
+
+Allows users to close their trades before their expiration time. This will allow traders to exit any position to lock in profits or free up collateral.
+
+Formula:
+For an early close, the platform will use the Black-Scholes model with the HV-as-IV value. 
+The option's current value will be determined based on the remaining time until expiration and the updated volatility expectation.
+Black Scholes
+
+Let's denote the Black Scholes price of an option (up or down) using trading volatility , strike, risk free rate and time to expiry. 
+Since only the trading volatility matters in this context, we omit all other parameters.
+
+**How does hv works?**
+
+Buffer employs a bot which sets the hvs for all the markets every 2 hours. The hv values are continuously monitored for all the markets. The values are only edited on-chain if the new values are at least 10% different from the currently set values.
+(Historical Volatility) is used as a proxy for (Implied Volatility) IV – which is calculated using garman-klass from the OHLC data obtained from Pyth. 
+
+**For early close:**
+- In case of ITM the iv is chosen as 10 x the current iv 
+- In case of OTM the iv is chosen as 0.5 x the current iv
+
+## 1-Click In-Chart Management 
+
+This feature takes trader flexibility and UX to a whole another level. It allows the trader to execute the following actions directly from the trading view chart:
+
+**For Market Orders:**
+- Early close directly from chart
+
+**For Limit Orders:**
+- Plot/Unplot Limit Orders on the Chart before they are executed;
+- Edit order terms including trigger price, trade size, timeframe, order expiry, minimum payout %age limit, and even trade direction (Up/Down);
+- Cancel Limit Order;
+- Drag Limit Order to edit the Strike Price.

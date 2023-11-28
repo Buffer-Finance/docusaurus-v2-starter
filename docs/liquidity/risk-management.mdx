@@ -1,0 +1,41 @@
+---
+sidebar_label: '🛡 Risk Management'
+---
+
+# Risk Management
+
+## Dynamic Pricing Mechanism:
+Buffer employs a "Dynamic Pricing" mechanism to incentivize or penalize traders, with the aim of maintaining balance in the Open Interest (OI) across various markets and promoting diversification among traders. 
+This mechanism is intricately designed to impose higher fees during periods of market volatility. 
+The fee is applicable to all trades and dynamically scales, influenced by trading volume, and payouts. 
+It adds positive expectancy to the platform, thereby improving the possible outcome for LPs. 
+
+
+## Pool Specifications:
+Additional parameters besides the adaptive pricing mechanism implemented to manage risk associated with long tails events for liquidity providers:
+
+#### Max Utilization %
+This parameter defines the maximum cumulative trade sizes that can be placed across all markets simultaneously. It sets an upper limit on the total exposure across all markets.
+40% of the available Liquidity.
+Buffer reserves the liquidity in BLP to be paid as profits to traders. 
+There is a maximum utilization for BLP, beyond which new positions are not allowed to be opened (traders are still allowed to reduce their OIs).
+This parameter is in place to ensure some liquidity is always available for LPs to withdraw. 
+
+#### Max Utilization per asset %
+2-3% of the available liquidity 
+Percentage of the total available liquidity (depending on the asset)
+
+#### Max Utilization per trade %
+0.25% of the available liquidity
+
+#### Max Deposit Limit
+The maximum amount of liquidity that can be provided to the uBLP and aBLP vault at any given time.
+
+
+## Circuit Breakers:
+To further protect LPs from potential risks, Buffer implements a liquidity circuit breaker. 
+This ensures that a minimum percent of pool's NAV is available as liquid to trade options. 
+
+When the threshold cut-off (Net Liquidity Out) e.g. 0.5% of the liquidity for uBLP is reached on any of the pools, the circuit breaker fires. 
+The circuit breaker continues to fire until these conditions are rectified. 
+A cooldown timer then begins, during which all trade executions are still paused. 

@@ -1,0 +1,300 @@
+---
+sidebar_label: '⚙️ All Configs'
+---
+import '/src/css/config-dB-table.css';
+
+# All Configs
+
+## Global Parameters
+
+### Referral Discounts:
+
+<div>
+<table className="config-dB-table">
+
+|  Tier   | Payout Boost | Fee Share                   |
+|:-------:|:------------:|:---------------------------:|
+| Tier 1  |      1%      |            0.25%            |
+| Tier 2  |      2%      |            0.50%            |
+| Tier 3  |      3%      |            0.75%            |
+
+</table>
+</div>
+
+Payout Boost = additional payout over base payout
+Fee Share = % of trade size
+
+### NFT Discounts:
+
+<div>
+<table className="config-dB-table">
+
+|    Tier   | Payout Boost |
+|:---------:|:------------:|
+| Silver    |      2.5%    |    
+| Gold      |      5%      | 
+| Platinum  |      8%      |
+| Diamond   |     12%      |     
+
+</table>
+</div>
+
+
+### Overall Pool Utilization Limit:
+
+Percent of the pool's available balance. This is the maximum trade amount a user can open a trade for. Currently, it is set at 40%.
+
+## Global Parameters v2.5:
+
+### Max Pool OI
+
+<div>
+<table className="config-dB-table">
+
+| Pool | Max Pool OI |
+|:----:|:-----------:|
+| USDC |    50000    |
+| ARB  |    75000    |
+
+</table>
+</div>
+
+## Pair Specific Configs:
+
+### Max OI
+
+<div>
+<table className="config-dB-table">
+
+| Asset      |     Max OI (ARB)     |     Max OI (USDC)      |
+|------------|----------------------|------------------------|
+| BTC/USD    | 2000                 | 2000                   | 
+| ETH/USD    | 2000                 | 2000                   | 
+| GBP/USD    | 2000                 | 2000                   | 
+| EUR/USD    | 2000                 | 2000                   | 
+| XAU/USD    | 1000                 | 1000                   | 
+| XAG/USD    | 1000                 | 1000                   | 
+| LINK/USD   | 500                  | 500                    |     
+| SOL/USD    | 500                  | 500                    |    
+| ARB/USD    | 500                  | 500                    |        
+| BNB/USD    | 500                  | 500                    |          
+| XRP/USD    | 500                  | 500                    |  
+| TON/USD    | 500                  | 500                    | 
+| DOGE/USD   | 500                  | 500                    | 
+| USD/CAD    | 1000                 | 1000                   | 
+| NZD/USD    | 1000                 | 1000                   | 
+| USD/SGD    | 1000                 | 1000                   | 
+| USD/CHF    | 1000                 | 1000                   | 
+| AUD/USD    | 1000                 | 1000                   |
+
+</table>
+</div>
+
+### Max/Min Trade Size
+
+<div>
+<table className="config-dB-table">
+
+| Asset      | Max Trade Size (ARB) | Max Trade Size (USDC) | Min Trade Size (ARB) | Min Trade Size (USDC) |
+|------------|----------------------|-----------------------|----------------------|-----------------------|
+| BTC/USD    | 100                  | 100                   | 1                    | 1                     |
+| ETH/USD    | 100                  | 100                   | 1                    | 1                     |
+| GBP/USD    | 100                  | 100                   | 1                    | 1                     |
+| EUR/USD    | 100                  | 100                   | 1                    | 1                     |
+| XAU/USD    | 100                  | 100                   | 1                    | 1                     |
+| XAG/USD    | 100                  | 100                   | 1                    | 1                     |
+| LINK/USD   | 50                   | 50                    | 1                    | 1                     |
+| SOL/USD    | 50                   | 50                    | 1                    | 1                     |
+| ARB/USD    | 50                   | 50                    | 1                    | 1                     |
+| BNB/USD    | 50                   | 50                    | 1                    | 1                     |
+| XRP/USD    | 50                   | 50                    | 1                    | 1                     |
+| TON/USD    | 50                   | 50                    | 1                    | 1                     |
+| DOGE/USD   | 50                   | 50                    | 1                    | 1                     |
+| USD/CAD    | 50                   | 50                    | 1                    | 1                     |
+| NZD/USD    | 50                   | 50                    | 1                    | 1                     |
+| USD/SGD    | 50                   | 50                    | 1                    | 1                     |
+| USD/CHF    | 50                   | 50                    | 1                    | 1                     |
+| AUD/USD    | 50                   | 50                    | 1                    | 1                     |
+
+</table>
+</div>
+
+### Decimal
+
+<div>
+<table className="config-dB-table">
+
+
+| Asset      |        Decimal       |
+|------------|----------------------|
+| BTC/USD    |          2           |
+| ETH/USD    |          2           |
+| GBP/USD    |          6           | 
+| EUR/USD    |          6           |
+| XAU/USD    |          2           |
+| XAG/USD    |          2           |
+| LINK/USD   |          2           |
+| SOL/USD    |          2           |
+| ARB/USD    |          2           |
+| BNB/USD    |          2           |
+| XRP/USD    |          2           |
+| TON/USD    |          6           |
+| USD/CAD    |          6           |
+| NZD/USD    |          6           |
+| USD/CHF    |          6           | 
+| AUD/USD    |          6           |
+
+</table>
+</div>
+
+### Platform Fee
+
+<div>
+<table className="config-dB-table">
+
+
+| Asset      | Platform Fee (USDC)  | Platform Fee (ARB)     |
+|------------|----------------------|------------------------|
+| BTC/USD    | 0.75                 |0.1                     | 
+| ETH/USD    | 0.75                 |0.1                     | 
+| GBP/USD    | 0.75                 |0.1                     | 
+| EUR/USD    | 0.75                 |0.1                     | 
+| XAU/USD    | 0.75                 |0.1                     | 
+| XAG/USD    | 0.75                 |0.1                     | 
+| LINK/USD   | 0.75                 |0.1                     |     
+| SOL/USD    | 0.75                 |0.1                     |    
+| ARB/USD    | 0.75                 |0.1                     |        
+| BNB/USD    | 0.75                 |0.1                     |          
+| XRP/USD    | 0.75                 |0.1                     |  
+| TON/USD    | 0.75                 |0.1                     | 
+| DOGE/USD   | 0.75                 |0.1                     | 
+| USD/CAD    | 0.75                 |0.1                     | 
+| NZD/USD    | 0.75                 |0.1                     | 
+| USD/SGD    | 0.75                 |0.1                     | 
+| USD/CHF    | 0.75                 |0.1                     | 
+| AUD/USD    | 0.75                 |0.1                     |
+
+
+</table>
+</div>
+
+### Min/Max Timeframe
+
+<div>
+<table className="config-dB-table">
+
+| Asset      |    Min TimeFrame (in mins)    |  Max TimeFrame (in mins) |
+|------------|-------------------------------|--------------------------|
+| BTC/USD    |1                              |240                       | 
+| ETH/USD    |1                              |240                       | 
+| GBP/USD    |1                              |240                       | 
+| EUR/USD    |1                              |240                       | 
+| XAU/USD    |1                              |240                       | 
+| XAG/USD    |1                              |240                       | 
+| LINK/USD   |1                              |240                       |     
+| SOL/USD    |10                             |240                       |    
+| ARB/USD    |10                             |240                       |        
+| BNB/USD    |10                             |240                       |          
+| XRP/USD    |10                             |240                       |  
+| TON/USD    |10                             |240                       | 
+| DOGE/USD   |10                             |240                       | 
+| USD/CAD    |10                             |240                       | 
+| NZD/USD    |10                             |240                       | 
+| USD/SGD    |10                             |240                       | 
+| USD/CHF    |10                             |240                       | 
+| AUD/USD    |10                             |240                       |
+
+</table>
+</div>
+
+### Early Close
+
+<div>
+<table className="config-dB-table">
+
+| Asset      |   is Early Closed Allowed   |  Early Close Threshold (in mins) |
+|------------|-----------------------------|----------------------------------|
+| BTC/USD    |         Yes                 |                 3                |
+| ETH/USD    |         Yes                 |                 3                |
+| GBP/USD    |         Yes                 |                 3                |
+| EUR/USD    |         Yes                 |                 3                |
+| XAU/USD    |          No                 |                N/A               |
+| XAG/USD    |          No                 |                N/A               |
+| LINK/USD   |          No                 |                N/A               |
+| SOL/USD    |          No                 |                N/A               |
+| ARB/USD    |          No                 |                N/A               |
+| BNB/USD    |          No                 |                N/A               |
+| XRP/USD    |          No                 |                N/A               |
+| TON/USD    |          No                 |                N/A               |
+| USD/CAD    |          No                 |                N/A               |
+| NZD/USD    |          No                 |                N/A               |
+| USD/CHF    |          No                 |                N/A               |
+| AUD/USD    |          No                 |                N/A               |
+
+</table>
+</div>
+
+## Admin Controlled Parameters:
+
+### Trading
+
+<div>
+<table className="config-dB-table">
+
+|                Name                       |                                         Description                                           |                      Contract              | Function to Change                    |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------------------|
+|```baseSettlementFeePercentageForAbove```  |Max settlement fee percentage a user will be charged for opening an UP trade                   |BufferBinaryOptions                         | ```configure```                       |
+|```baseSettlementFeePercentageForBelow```  |Min settlement fee percentage a user will be charged for opening an DOWN trade                 |BufferBinaryOptions                         | ```configure```                       |
+|```nftTierStep```                          |Mapping of NFT tier to the step reduction in the settlement fee percentage                     |BufferBinaryOptions                         |```configure```                        |
+|```isPaused```                             |Used for pausing/unpausing trading                                                             |BufferBinaryOptions                         |```togglecreation```                   |
+|```maxLiquidity```                         |Max pool capacity                                                                              |BufferBinaryOptions                         |```setMaxLiquidity```                  |
+|```contractRegistry```                     |List of trading contracts with a flag depicting whether or not trading is allowed on them      |BufferRouter                                |```setContractRegistry```              |
+|```isInPrivateKeeperMode```                |If true only the keepers can open/close the trades. Else anyone can                            |BufferRouter                                |```setInPrivateKeeperMode              |
+|```isKeeper```                             |List of all the keepers                                                                        |BufferRouter                                |```setKeeper```                        |
+|```referrerTierStep```                     |Mapping of address to its referrer tier                                                        |ReferralStorage                             |```configure```                        |
+|```referrerTierDiscount```                 |Mapping of referrer tier to the rebate earned over the fees                                    |ReferralStorage                             |```configure```                        |
+|```traderNFTContract```                    |NFT middleware contract                                                                        |OptionsConfig                               |```settraderNFTContract```             |
+|```settlementFeeDisbursalContract```       |Fee distirbutor contract                                                                       |OptionsConfig                               |```setSettlementFeeDisbursalContract```|
+|```assetUtilizationLimit```                |Pair wise pool utilization limit                                                               |OptionsConfig                               |```setAssetUtilizationLimit```         |
+|```overallPoolUtilizationLimit```          |Overall Pool Utilization Limit                                                                 |OptionsConfig                               |```setOverallPoolUtilizationLimit```   |
+|```optionFeePerTxnLimitPercent```          |Max Trade size as a percentage of Pools Available Balance                                      |OptionsConfig                               |```setOptionFeePerTxnLimitPercent```   |
+|```minFee```                               |Minimum trade size                                                                             |OptionsConfig                               |```setMinFee```                        |
+|```maxPeriod```                            |Max period of a trade                                                                          |OptionsConfig                               |```setMaxPeriod```                     |
+|```minPeriod```                            |Min period of a trade                                                                          |OptionsConfig                               |```setMinPeriod```                     |
+|```marketTimes```                          |Mapping of day to its open close time. Only for forex pairs.                                   |OptionsConfig                               |```setMarketTime```                    |
+
+</table>
+</div>
+
+
+### Staking
+
+<div>
+<table className="config-dB-table">
+
+|                Name                 |                                         Description                                           |                      Contract              | Function to Change                                                           |
+|-------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------|
+|```updateLastDistributionTime```     |lastDistributionTime                                                                           |last Distribution Time                      |```RewardDistributor``` / ```BonusDistributor```                                                            |
+|```setTokensPerInterval```           |tokensPerInterval                                                                              |tokens to be distributed per Interval       |```RewardDistributo``` / ```BonusDistributor```                                                             |
+|```withdrawToken```                  | -                                                                                             |Withdraws any ERC20 token from the contract |```RewardDistributor``` / ```BonusDistributor``` / ```RewardRouterV2``` / ```Vester``` / ```RewardTracker```|
+|```batchStakeBfrForAccount```        | -                                                                                             |Stake multiple at once                      |```RewardRouterV2```                                                                                        |
+|```stakeBfrForAccount```             | -                                                                                             |Stake BFR for another account               |```RewardRouterV2```                                                                                        |
+|```compoundForAccount```             | -                                                                                             |Compounds for another account               |```RewardRouterV2```                                                                                        |
+|```batchCompoundForAccounts```       | -                                                                                             |Compounds multiple at once                  |```RewardRouterV2```                                                                                        |
+|```setInPrivateStakingMode```        |inPrivateStakingMode                                                                           |Sets/unsets in private mode                 |```RewardTracker```                                                                                         |
+|```setInPrivateTransferMode```       |inPrivateStakingMode                                                                           |Sets/unsets in private mode                 |```RewardTracker```                                                                                         |
+|```setHandler```                     |isHandler                                                                                      |Sets/unsets handlers                        |```RewardRouterV2``` / ```Vester``` / ```RewardTracker```                                                   |
+|```setDepositToken```                |isDepositToken                                                                                 |Sets/unsets deposit tokens                  |```RewardTracker```                                                                                         |
+|```setInPrivateClaimingMode```       |inPrivateClaimingMode                                                                          |Sets/unsets in private mode                 |```RewardTracker```                                                                                         |
+|```stakeForAccount```                | -                                                                                             |Stake for another account                   |```RewardTracker```                                                                                         |
+|```unstakeForAccount```              | -                                                                                             |unstake for another account                 |```RewardTracker```                                                                                         |
+|```claimForAccount```                | -                                                                                             |claim for another account                   |```RewardTracker```                                                                                         |
+|```setHasMaxVestableAmount```        |hasMaxVestableAmount                                                                           |Sets/unsets hasMaxVestableAmount            |```Vester```                                                                                                |
+|```depositForAccount```              | -                                                                                             |Deposits for another account                |```Vester```                                                                                                |
+|```setGov```                         | -                                                                                             |Sets gov role                               |```RewardDistributor``` / ```BonusDistributor``` / ```RewardRouterV2``` / ```Vester``` / ```RewardTracker```|
+|```setMinter```                      | -                                                                                             |Sets minter role                            |```esBFR/BFR```                                                                                             |
+|```mint```                           | -                                                                                             |Mints for account                           |```esBFR/BFR```                                                                                             |
+
+</table>
+</div>
+
