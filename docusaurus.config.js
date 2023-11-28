@@ -15,7 +15,7 @@ const config = {
   favicon: 'img/logos/side-bar-logo.png',
 
   // Set the production url of your site here
-  url: 'https://buffer.finance/',
+  url: 'https://docs.buffer.finance/',
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 
