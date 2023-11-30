@@ -1,19 +1,31 @@
 ---
 sidebar_label: '📖 Fee'
 ---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
 # Fee
 
-## Taker Fee:
+Buffer Perps are built on Perennial finance. An exchange fee is charged by perennial which varies based on how much impact the trade has on the market. 
+
+### Taker Fee:
 This taker fee is charged whenever, a long or short position is opened or closed on Buffer. 
 This fee is determined based on the position's notional size, change in skew (long/short ratio) and the impact the position has on the makers.
 
-## Settlement Fee:
+$$
+taker fee = notional * (takerFee + Δskew * takerSkewFee +  impact * takerImpactFee)
+$$
+
+### Settlement Fee:
 
 For Buffer perps, settlement fee is the fee used to cover oracle keeper fee. 
 
-## Ecosystem Fee:
+### Ecosystem Fee:
 
-Ecosystem fee is a flat fee of 1bps is applied when a position is opened on Buffer.
+Buffer charges a very small ecosystem or interface fee of 1 bps for helping users interact with perennial's smart contracts.
+
+
 
 ## Fee Distribution:
 
