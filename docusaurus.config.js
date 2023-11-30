@@ -79,15 +79,6 @@ const config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Documentation',
-              to: '/docs/introduction',
-            },
-          ],
-        },
-        {
           title: 'Community',
           items: [
             {
@@ -108,12 +99,16 @@ const config = {
           title: 'More',
           items: [
             {
+              label: 'Trade',
+              href: 'https://buffer.finance/',
+            },
+            {
               label: 'Blog',
-              to: '/blog',
+              href: 'https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/Buffer-Finance',
             },
           ],
         },
