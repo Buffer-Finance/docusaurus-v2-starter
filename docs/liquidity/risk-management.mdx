@@ -33,9 +33,13 @@ The maximum amount of liquidity that can be provided to the uBLP and aBLP vault 
 
 
 ## Circuit Breakers:
-To further protect LPs from potential risks, Buffer implements a liquidity circuit breaker. 
+To further protect LPs from potential risks, Buffer implements an on-chain liquidity circuit breaker. 
 This ensures that a minimum percent of pool's NAV is available as liquid to trade options. 
 
 When the threshold cut-off (Net Liquidity Out) e.g. 0.5% of the liquidity for uBLP is reached on any of the pools, the circuit breaker fires. 
 The circuit breaker continues to fire until these conditions are rectified. 
-A cooldown timer then begins, during which all trade executions are still paused. 
+A cooldown timer then begins, during which no new trades can be placed on the platform.
+
+:::note
+When the circuit breaker fires, trades that are already open on the platform are not affected and will continue to be executed as usual. 
+:::
