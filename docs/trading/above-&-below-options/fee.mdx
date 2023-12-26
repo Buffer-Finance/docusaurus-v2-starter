@@ -1,0 +1,24 @@
+---
+sidebar_label: '📖 Fee'
+---
+
+# Fee
+
+## Settlement Fee:
+
+Settlement Fee (or trading fee) is the fee paid by takers (traders) to the makers (LPs). 
+Buffer employs a "Dynamic Pricing" mechanism to incentivize or penalize takers, with the aim of maintaining balance in the directional Open Interest (OI)
+across various markets and promoting diversification among takers. 
+
+## Keeper Fee:
+
+Placing Up/Down trades on Buffer incurs a flat fee for interactions with the Buffer keeper to compensate for the gas paid to the underlying blockchain while allowing for a 2x faster 1 Click trading experience. 
+This is a fixed amount used to cover the keeper fee for opening & closing a trade. 
+
+:::note:
+Due to the recent gas spikes on Arbitrum, we have implemented the platform fee model as dynamic. 
+The fee is automatically adjusted every 24 hours based on the average cost incurred by the keepers.
+:::
+
+## Fee Distribution:
+TBA

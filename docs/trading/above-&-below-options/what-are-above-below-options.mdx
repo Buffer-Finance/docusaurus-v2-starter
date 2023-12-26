@@ -1,0 +1,42 @@
+---
+sidebar_label: '💡 What are Above/Below Options?'
+---
+
+# What are Above/Below Options?
+
+Above/Below options allow you to predict whether the market price will be above or lower than a price target (the barrier) at the end of the expiry. 
+
+If you select ‘Above’, you receive the payout if the exit price is above the barrier
+If you select ‘Below’, you receive the payout if the exit price is below the barrier
+
+If the selected condition is not met, or if the exit price is equal to the barrier your stake is lost. 
+
+The principal advantage of above/below options is that they do not require either a stop loss or take profit target. 
+
+Above/below options can be traded during periods of strong trending or volatility when price will have a tendency to swing powerfully in one direction. 
+These options have a higher level of risk but they are counterbalanced by higher payouts and can be very profitable for those who can interpret when a market will move strongly in one direction.
+
+
+## Example:
+For the sake of demonstrating a profitable trade, let’s consider the following market variables:
+
+- Pair: BTC/USD
+- Strike Price: $43,500
+- Time until Maturity: 23 hours
+- Current BTC Price: $43,282
+
+With these variables, Buffer prices the above/below contracts of this market as follows:
+Above: 0.48 USDC
+Below: 0.62 USDC
+
+:::info
+The sum cost of the above and below contracts is not exactly 1 USDC. 
+This is due to the presence of a skew impact mechanism that maintains a minimum premium on the contracts, depending on the amount of current underlying risk to the BLP (Buffer Liquidity Pool).
+:::
+
+Let’s say a trader uses 100 USDC to purchase exactly 208 Above contracts from the BLP pool, given that the price of 1 Above contract is 0.48 USDC.
+If, in 23 hours, the price of BTC is indeed above $43,500, our trader will be able to exercise his position. 
+He acquired 1 USDC for each of the 208 contracts he bought. 
+This means his 208 Above contracts will be worth exactly 208 USDC, netting him a profit of 108 USDC on his 100 USDC investment.
+
+If the price of BTC is below $43,500, 23 hours from now, the Below contracts for this market will be worth 1 USDC each, and the Above contracts will be worth 0.

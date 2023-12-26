@@ -12,7 +12,7 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: '↕️ Up & Down Options',
+          label: '⬆️⬇️ Up & Down Options',
           items: [
             'trading/up-&-down-options/what-are-up-down-options', 
             'trading/up-&-down-options/multi-asset-collateral',  
@@ -24,6 +24,18 @@ module.exports = {
             'trading/up-&-down-options/order-settlement',
             'trading/up-&-down-options/fee',    
           ],
+        },
+        {
+          type: 'category',
+          label: '↗️↘️ Above & Below Options',
+          items: [
+            'trading/above-&-below-options/what-are-above-below-options',
+            'trading/above-&-below-options/multi-asset-collateral',
+            'trading/above-&-below-options/pair-list',
+            'trading/above-&-below-options/trading-parameters',
+            'trading/above-&-below-options/odds-&-pricing',
+            'trading/above-&-below-options/fee'
+          ]
         },
         {
           type: 'category',

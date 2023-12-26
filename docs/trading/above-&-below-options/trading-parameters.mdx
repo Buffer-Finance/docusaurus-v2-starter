@@ -1,0 +1,71 @@
+---
+sidebar_label: '🧮 Trading Parameters'
+---
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+<link rel="stylesheet" href={useBaseUrl("katex/katex.min.css")} />
+
+# Trading Parameters
+
+## Pricing Parameters:
+
+### Contract Pricing
+
+Buffer uses the Black-Scholes Algorithm to derive a realistic price for each above/below contract, using the following data points:
+
+- Current Asset Price: price feeds are provided by the Pyth Oracle
+- Distance to Strike Price: current distance to the strike price set at the time a trade is opened
+- Distance to Strike Date: current distance to strike date set at the time a trade is opened
+- Implied Volatility: Buffer proxies current implied volatility (iv) as historical volality (hv). hv of a contract is updated for each contract on a daily basis.
+
+
+Skew:
+Each market has an individual max exposure.
+
+Calculation:
+
+$$
+\text{SKEW}(s) = \max(A \cdot B) - \left( \sum a + \sum b \right)
+$$
+
+Where,
+
+- *A* is total Above trades
+- *B* is total Below trades
+- *u* is the premium on Above trades
+- *b* is the premium on Below trades
+
+
+### Dynamic Pricing:
+
+- *S* is the max skew
+- *s* is the current skew
+- *B* is the base settlement fee (at 0 skew)
+- *M* is the max settlement fee
+
+#### If S is positive,
+
+$$
+\text{Sf}_{\text{Above}} = B + \left( \frac{M - B}{S} \right) \times s
+$$
+
+
+
+$$
+\text{Sf}_{\text{Below}} = B - \left( \frac{B}{S} \right) \times s
+$$
+
+
+#### If S is negative,
+
+$$
+\text{Sf}_{\text{Above}} = B - \left( \frac{B}{S} \right) \times s
+$$
+
+
+
+$$
+\text{Sf}_{\text{Below}} = B + \left( \frac{M - B}{S} \right) \times s
+$$
+
+
