@@ -7,19 +7,20 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 # Trading Parameters
 
+## Expiry & Trading Window:
+
+- Trades can be accepted up to 12 hours before expiry.
+
+Example:
+If a contract expires on a Friday at 08:00 UTC, you can enter trades for that contract until 20:00 UTC on Thurday. 
+
+- Trading for a new set of contracts opens 36 hours before the expiry of the most recent expiry. 
+
+Example:
+If a contract is set to expire at 08:00 UTC on December 26th, the trading for this contract would start at 20:00 UTC on December 24th. 
+
 ## Pricing Parameters:
-
-### Contract Pricing
-
-Buffer uses the Black-Scholes Algorithm to derive a realistic price for each above/below contract, using the following data points:
-
-- Current Asset Price: price feeds are provided by the Pyth Oracle
-- Distance to Strike Price: current distance to the strike price set at the time a trade is opened
-- Distance to Strike Date: current distance to strike date set at the time a trade is opened
-- Implied Volatility: Buffer proxies current implied volatility (iv) as historical volality (hv). hv of a contract is updated for each contract on a daily basis.
-
-
-Skew:
+### Skew:
 Each market has an individual max exposure.
 
 Calculation:
@@ -34,6 +35,9 @@ Where,
 - *B* is total Below trades
 - *u* is the premium on Above trades
 - *b* is the premium on Below trades
+
+
+The skew mechanims keeps the Buffer Liquidity pool balanced between Above & Below sides of the market, by applying a premium to the overbought side. 
 
 
 ### Dynamic Pricing:
