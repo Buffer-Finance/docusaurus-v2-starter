@@ -1,24 +1,36 @@
 ---
 sidebar_label: '📖 Fee'
 ---
+import '/src/css/config-dB-table.css';
 
 # Fee
 
 ## Settlement Fee:
 
-Settlement Fee (or trading fee) is the fee paid by takers (traders) to the makers (LPs). 
-Buffer employs a "Dynamic Pricing" mechanism to incentivize or penalize takers, with the aim of maintaining balance in the directional Open Interest (OI)
-across various markets and promoting diversification among takers. 
+Settlement Fee (or trading fee) is the fee paid by takers (traders) to the makers (LPs). For above/below options, Settlement Fee (SF) is a function of market skew (s), a metric reflecting trade imbalance. 
+Positive skew (s > 0) indicates a market leaning towards either up or down trades, and here, SF linearly scales between a base fee (B) and a maximum fee (M) as per SF Above = B + ((M - B)/S)*s. 
+For negative skew (s < 0), signifying an atypical market, SF inversely adjusts, reducing below the base fee as per SF Down = B - (B/S)*s. 
+This approach dynamically adjusts fees based on market imbalances.
 
-## Keeper Fee:
+## Protocol Fee:
 
-Placing Up/Down trades on Buffer incurs a flat fee for interactions with the Buffer keeper to compensate for the gas paid to the underlying blockchain while allowing for a 2x faster 1 Click trading experience. 
+Placing Up/Down trades on Buffer incurs a flat fee for interactions with the Buffer keeper that enables a 2x faster 1 Click trading experience. 
 This is a fixed amount used to cover the keeper fee for opening & closing a trade. 
 
-:::note
-Due to the recent gas spikes on Arbitrum, we have implemented the platform fee model as dynamic. 
-The fee is automatically adjusted every 24 hours based on the average cost incurred by the keepers.
-:::
 
 ## Fee Distribution:
-TBA
+
+100% of the settlement fee is distributed between the makers (aBLP & uBLP LPs), $BFR Stakers.
+
+<div>
+<table className="config-dB-table">
+
+| LPs | Stakers |
+|:---:|:--------:|
+| 70% |   30%   | 
+
+</table>
+</div>
+
+This fee goes to the Settlement Fee Disbursal (SFD) Contract. SFD contract transfers this fee to the reward distributor contracts of staking.
+The protocol uses the chainlink keeper to distribute the fee accumulated in the SFD contract to the respective distributors every Wednesday at 12:00 UTC.
