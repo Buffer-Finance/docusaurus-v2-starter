@@ -30,26 +30,13 @@
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('/static/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+  font-family: 'Poppins';
+  src: url('/static/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  font-size: larger;
   font-weight: normal;
   font-style: normal;
 }
 
-/* Apply Open Sans globally */
-body {
-  font-family: 'Open Sans', serif;
-}
-
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
-  font-weight: bolder;
-  font-size: small;
-}
-
-.theme-doc-sidebar-item-link-level-1:first-child .menu__link {
-  font-weight: bold;
-  font-size: small;
-}
 
 
 

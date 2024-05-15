@@ -16,8 +16,7 @@ module.exports = {
           items: [
             'trading/up-&-down-options/what-are-up-down-options', 
             'trading/up-&-down-options/multi-asset-collateral',  
-            'trading/up-&-down-options/order-types',            
-            'trading/up-&-down-options/pair-list',              
+            'trading/up-&-down-options/order-types',                      
             'trading/up-&-down-options/market-schedule',        
             'trading/up-&-down-options/trading-parameters',    
             'trading/up-&-down-options/advanced-features',      
@@ -27,11 +26,10 @@ module.exports = {
         },
         {
           type: 'category',
-          label: '↗️↘️ Above & Below Options',
+          label: '🔼🔽 Above & Below Options',
           items: [
             'trading/above-&-below-options/what-are-above-below-options',
             'trading/above-&-below-options/multi-asset-collateral',
-            'trading/above-&-below-options/pair-list',
             'trading/above-&-below-options/trading-parameters',
             'trading/above-&-below-options/odds-&-pricing',
             'trading/above-&-below-options/fee'
@@ -58,11 +56,6 @@ module.exports = {
             'trading/trader-incentives/optopi-collection',
           ],
         },
-        {
-          type: 'doc',
-          id: 'trading/tournaments',
-          label: 'No Loss Tournaments'
-        }
       ],
     },
     {

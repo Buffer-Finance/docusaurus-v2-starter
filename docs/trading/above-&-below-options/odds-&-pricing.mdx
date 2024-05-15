@@ -15,14 +15,15 @@ Buffer uses the Black-Scholes Algorithm to derive a realistic price for each abo
 
 ## Odds:
 
-Odds for Above & Below positions can changes as the markets moves closer to maturity, and this price movement affects these prices. 
+The odds for Above and Below positions can change as the markets move closer to maturity. 
+Factors such as asset price movement and the remaining time to the strike date dynamically influence 
+the odds of hitting a particular strike price. As these odds fluctuate with market conditions, 
+so does the value of your position.
 
-An asset's price movement and time to maturity also affects the odds of reaching a certain strike price.  
-Hence, the value of your position will change as these odds change. 
-
-In addition to odds data changing with market conditions, prices for a above and below contract will also change based on trader activity.  
-As more traders buy contracts from either side of a market, prices will be adjusted in response. 
-Once the trading window closes, risk/reward is locked in and will not change anymore.
-
-If your position is successful when the market matures you can redeem each position token for 1 whole USDC. 
-Once a market matures a winning contract, no matter the price is worth 1 USDC while a losing one is has no value.  
+Market Response to Trading Activity:
+In addition to odds and prices changing with market conditions, the prices for above and below 
+contracts also adjust based on trader activity. As more traders buy contracts from either side of 
+the market, prices are adjusted in response to balance the risk. Once the trading window closes, 
+the risk/reward is locked in and will not change. If your position is successful when the market matures, 
+you received payout worth 1 whole USDC irrespective of the buy-in. If a market resolves in a way that your contract is 
+on the losing side, the token becomes valueless.

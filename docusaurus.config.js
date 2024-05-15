@@ -8,6 +8,7 @@ const darkTheme = themes.dracula;
 const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
 
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Buffer Documentation',
@@ -69,8 +70,8 @@ const config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/Buffer-Finance',
-          label: 'GitHub',
+          href: 'https://buffer.finance/',
+          label: 'Website',
           position: 'right',
         },
       ],
@@ -123,7 +124,7 @@ const config = {
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },
-  },
+    },
 };
 
 module.exports = config;

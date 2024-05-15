@@ -29,18 +29,21 @@ An option is ITM if the settlement price differs from the strike price and there
 An Up position is ITM if the closing (settlement) price is greater than the strike price.
 A put option is ITM if the closing (settlement)  price is lesser than the strike price.
 
-## Oracle (Pyth) and Keepers:
-Orders are settled on-demand by the [Pyth Network](https://pyth.network/). Pyth is a network of nodes and global trading venues that makes real-time price data available on-chain. Keepers, execute orders as they are submitted to Buffer's contracts using Pyth prices. 
+## Oracle (Pyth):
+Orders are settled on-demand by the [Pyth Network](https://pyth.network/). Pyth is a network of nodes and global trading venues that makes real-time price data available on-chain.
 On Buffer, slippage is used as the accepted price movement between when the user initiates the trade and when the trade is actually opened. 
-There can be a difference between the price provided on the front-end and that used by the keeper, which is why we check for slippage. The trade will be opened at a price provided by the keeper if it's within the slippage with the price provided by the user.
 
 ### How Does It work?
 
-**Market Orders:**
-When a trader submits a market order, an event is emitted that alerts a keeper that a new order has been submitted and needs a price. The Keeper then proceeds to fetch a real-time price from Pyth for the given market. That price is then submitted to the contracts.
-
-**Limit / Stop Orders:**
-When you submit a limit or stop order, the order is stored in the contracts and an event is emitted to alert keepers. Keepers then store that order in their cache and monitors Pyth market prices in real-time. If the market price reaches your order's trigger price, keepers will execute your order.
+Orders are settled on-demand by the Pyth Network. 
+Pyth is a network of nodes and global trading venues that makes real-time price data available on-chain. 
+The Keepers fetch the price from Pyth internally, and publish it to the contract, the contract then internally verifies the data with Pyth removing any trust assumption on the keeper.  
+On Buffer, slippage is used as the accepted price movement between when the user initiates 
+the trade and when the trade is actually opened. 
+There can be a difference between the price provided on the front-end and that used by the keeper, 
+which is why we check for slippage. 
+The trade will be opened at a price provided by the keeper if it's within the 
+slippage with the price provided by the user.
 
 ### Price Sources
 Pyth sources prices in real time from the leading venues in each market category. For crypto, that includes top-tier spot exchanges. Foreign exchange includes top-tier banks providing institutional-grade data performance and reliability.

@@ -64,52 +64,6 @@ Referrers are rewarded with a rebate for each successful referral. This encourag
 When a valid referral code is provided as an argument, to the ```openTrades()``` function, referees are granted a discount on he settlement fee for their trades which results in increased payout. 
 
 
-## Spread: 
-
-The opening price for an option now slightly exceeds the current price for "up" options and slightly undershoots it for "below" options. This is the formula:
-
-Spread = 
-
-$$
-f(hv, oi)
-$$
-
-The spread linearly scales from the lowest value which is 0.4 basis points at 2.5% hv to 0.8 basis points(spread config 2) at 16% hv.
-Then this lowest value of spread increases linearly to 1.5 (spread factor) times the lowest value as utilization of that market increases. 
-
-Spread Formula =
-
-```solidity
-function getSpread( 
-    uint256 strike, 
-    bool isAbove,
-    IOptionsConfig config,
-    IBufferBinaryOptions optionsContract
-) public view returns (uint256) {
-    uint256 spreadConfig1 = config.spreadConfig1();
-    uint256 spreadConfig2 = config.spreadConfig2();
-    uint256 m = (spreadConfig2 - spreadConfig1) / 1350;
-    uint256 c = (22 * spreadConfig1 - 5 * spreadConfig2) / 27;
-    uint256 spread = (m * config.iv()) + c;
-
-    // Adjust spread based on market utilization
-    spread = ((spread * (config.spreadFactor()) * optionsContract.totalMarketOI()) / 
-             (1e3 * optionsContract.getMaxOI())) + spread;
-    return spread;
-}
-
-function getSafeStrike( 
-    uint256 strike, 
-    bool isAbove,
-    IOptionsConfig config,
-    IBufferBinaryOptions optionsContract
-) public view returns (uint256) {
-    uint256 spread = getSpread(strike, isAbove, config, optionsContract);
-    // Adjust strike based on spread
-    return isAbove ? (strike * (1e8 + spread)) / 1e8 : (strike * (1e8 - spread)) / 1e8;
-}
-```
-
 ## Advanced Settings:
 
 On the Frontend, the users can find an option to configure the slippage and partial fill. 

@@ -9,7 +9,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 ## Expiry & Trading Window:
 
-- Trades can be accepted up to 12 hours before expiry.
+- Trades can be accepted up to 12 hours before expiry. After market crosses the 12th hour before expiry, the BLP pool stops offering liquidity for that market.
 
 Example:
 If a contract expires on a Friday at 08:00 UTC, you can enter trades for that contract until 20:00 UTC on Thurday. 
@@ -21,55 +21,12 @@ If a contract is set to expire at 08:00 UTC on December 26th, the trading for th
 
 ## Pricing Parameters:
 ### Skew:
-Each market has an individual max exposure.
 
-Calculation:
-
-$$
-\text{SKEW}(s) = \max(A \cdot B) - \left( \sum a + \sum b \right)
-$$
-
-Where,
-
-- *A* is total Above trades
-- *B* is total Below trades
-- *u* is the premium on Above trades
-- *b* is the premium on Below trades
-
-
-The skew mechanims keeps the Buffer Liquidity pool balanced between Above & Below sides of the market, by applying a premium to the overbought side. 
+Buffer v2.6 introduces a Skew mechanism that dynamically adjusts based on a percentage of the total funds in the Buffer Liquidity Pool (BLP). 
+This change allows the maximum skew to scale with the liquidity of the pool, enhancing its responsiveness to fluctuations in market conditions. 
+By tying skew limits to the pool's liquidity, the system maintains stability more effectively, adapting the balance mechanism to reflect the current financial state of the pool.
 
 
 ### Dynamic Pricing:
-
-- *S* is the max skew
-- *s* is the current skew
-- *B* is the base settlement fee (at 0 skew)
-- *M* is the max settlement fee
-
-#### If S is positive,
-
-$$
-\text{Sf}_{\text{Above}} = B + \left( \frac{M - B}{S} \right) \times s
-$$
-
-
-
-$$
-\text{Sf}_{\text{Below}} = B - \left( \frac{B}{S} \right) \times s
-$$
-
-
-#### If S is negative,
-
-$$
-\text{Sf}_{\text{Above}} = B - \left( \frac{B}{S} \right) \times s
-$$
-
-
-
-$$
-\text{Sf}_{\text{Below}} = B + \left( \frac{M - B}{S} \right) \times s
-$$
-
+Dynamic pricing on Buffer's trading platform uses statistical measures of market skew, dynamically adjusting based on the real-time imbalance between buy and sell positions. Dynamic pricing is vital to Buffer's risk management mechamism. By encouraging market neutrality and protecting liquidity providers, it plays a critical role in mantaining the stability of Buffer's prediction markets.
 
